@@ -1,0 +1,14 @@
+
+
+.link a{
+    font-size: 12px;
+    text-decoration: none;
+    color: #C7C7C7;
+    padding-right: 4px;
+}
+
+.info p{
+    font-size: 12px;
+    color: #C7C7C7;
+    font-weight: 550;
+}

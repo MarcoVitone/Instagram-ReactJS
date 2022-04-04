@@ -1,0 +1,29 @@
+.container{
+    width: 100%;
+    padding-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FAFAFA;
+}
+
+.scorllingContainer{
+    display: flex;
+    flex-direction: row;
+    max-width: 614px;
+    width: 100%;
+    height: auto;
+}
+
+.pageContainer{
+    max-width: 614px;  
+    width: 100%;
+    height: auto;
+}
+
+.postContainer{
+    max-width: 614px;
+    width: 100%;
+    height: auto;
+}
+

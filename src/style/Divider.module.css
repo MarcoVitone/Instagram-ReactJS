@@ -1,0 +1,16 @@
+.divider{
+    display: flex;
+    align-items: center;
+    
+}
+
+.lineBreak{
+    width: 111px;
+    height: 1px;
+    border-top: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.o{
+    margin: 0 10px;
+    opacity: 0.5;
+}

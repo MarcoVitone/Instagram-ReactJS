@@ -1,0 +1,19 @@
+.container{
+    max-width: 293px;
+    max-height: 293px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 28px;
+}
+
+@media screen and (max-width: 750px){
+    .container {
+        margin-right: 2px;
+    }
+}
+
+.container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

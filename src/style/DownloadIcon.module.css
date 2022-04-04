@@ -1,0 +1,12 @@
+.downloadContainer{
+    width: 350px;
+    height: 102px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#appstore{
+    margin-right: 10px;
+}
