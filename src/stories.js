@@ -10,7 +10,7 @@ export const stories = [
       },
     },
     {
-      url: "https://firebasestorage.googleapis.com/v0/b/instagram-8a4cf.appspot.com/o/0Gi2iFOS0dbSLyqR4SKMBiLabLS2%2Fposts%2Fimages%20(2).jfif?alt=media&token=e4aba600-194a-457b-83b1-480b1d298346",
+      url: "https://firebasestorage.googleapis.com/v0/b/instagram-8a4cf.appspot.com/o/0Gi2iFOS0dbSLyqR4SKMBiLabLS2%2Fposts%2FChris-Evans-Teases-Possible-Black-Panther-Movie-2.jpg?alt=media&token=db060531-318f-4f2e-9da3-576168a5de11",
       duration: 7500,
       header: {
         heading: "Natasha Romanoff",
@@ -41,7 +41,7 @@ export const stories = [
   ],
   [
     {
-      url: "https://firebasestorage.googleapis.com/v0/b/instagram-8a4cf.appspot.com/o/qtRNfXD5jec32Bz6TraTt3CQ2et1%2Fposts%2Fdownload%20(1).jfif?alt=media&token=0a56c1ad-a98e-4461-a350-9d964877a11b",
+      url: "https://firebasestorage.googleapis.com/v0/b/instagram-8a4cf.appspot.com/o/qtRNfXD5jec32Bz6TraTt3CQ2et1%2Fposts%2F2-Gladiator-Hulk-Thor-Ragnarok.jpg?alt=media&token=34625f88-cd6e-4b27-9f2a-a44816a69ed6",
       duration: 15000,
       header: {
         heading: "Hulk spacca",
@@ -56,7 +56,8 @@ export const stories = [
       duration: 7500,
       header: {
         heading: "Captain Marvel",
-        profileImage: "https://firebasestorage.googleapis.com/v0/b/instagram-8a4cf.appspot.com/o/seuypletpAYu7UPf4LnfMz4Knqm1%2Fprofilephoto%2FCaptainMarvelMovie.png?alt=media&token=01fe7ba4-3c93-40cb-905a-5511947a4ebf",
+        profileImage:
+          "https://firebasestorage.googleapis.com/v0/b/instagram-8a4cf.appspot.com/o/seuypletpAYu7UPf4LnfMz4Knqm1%2Fprofilephoto%2FCaptainMarvelMovie.png?alt=media&token=01fe7ba4-3c93-40cb-905a-5511947a4ebf",
       },
     },
     {
@@ -64,7 +65,8 @@ export const stories = [
       duration: 7500,
       header: {
         heading: "Captain Marvel",
-        profileImage: "https://firebasestorage.googleapis.com/v0/b/instagram-8a4cf.appspot.com/o/seuypletpAYu7UPf4LnfMz4Knqm1%2Fprofilephoto%2FCaptainMarvelMovie.png?alt=media&token=01fe7ba4-3c93-40cb-905a-5511947a4ebf",
+        profileImage:
+          "https://firebasestorage.googleapis.com/v0/b/instagram-8a4cf.appspot.com/o/seuypletpAYu7UPf4LnfMz4Knqm1%2Fprofilephoto%2FCaptainMarvelMovie.png?alt=media&token=01fe7ba4-3c93-40cb-905a-5511947a4ebf",
       },
     },
   ],
@@ -130,7 +132,7 @@ export const stories = [
       },
     },
     {
-      url: "https://firebasestorage.googleapis.com/v0/b/instagram-8a4cf.appspot.com/o/wrzYYuiKWHcxJUREIkzMRvwUEwH3%2Fposts%2Fimages.jfif?alt=media&token=cc8c2ecd-c89c-42dd-a221-70c7fbc77aec",
+      url: "https://firebasestorage.googleapis.com/v0/b/instagram-8a4cf.appspot.com/o/wrzYYuiKWHcxJUREIkzMRvwUEwH3%2Fposts%2F511658-iron-man-3-movies-robert-downey-jr-tony-stark.jpg?alt=media&token=2b7fc06e-d6f5-475d-9ce1-df1904171151",
       duration: 5000,
       header: {
         heading: "IronTony",

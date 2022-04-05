@@ -33,7 +33,11 @@ const Post = ({ userList, photoURL, profileURL, userName, caption, uid }) => {
     <div className={styles.postContainer} style={{ marginBottom: "25px" }}>
       <div className={styles.titleContainer}>
         <img src={profileURL} alt="" />
-        <Link to={`/user/${uid}`} state={{ userId: uid }} className={styles.linkUser}>
+        <Link
+          to={`/user/${uid}`}
+          state={{ userId: uid }}
+          className={styles.linkUser}
+        >
           <h6>{userName}</h6>
         </Link>
       </div>
@@ -44,15 +48,23 @@ const Post = ({ userList, photoURL, profileURL, userName, caption, uid }) => {
         <div className={styles.optionContainerLeft}>
           <FontAwesomeIcon
             icon={faHeart}
-            size="2x"
             onClick={changeColor}
-            style={{ color: "black" }}
+            style={{ color: "black", fontSize: "30px" }}
           />
-          <FontAwesomeIcon icon={faComment} size="2x" />
-          <FontAwesomeIcon icon={faPaperPlane} size="2x" />
+          <FontAwesomeIcon
+            icon={faComment}
+            style={{ color: "black", fontSize: "30px" }}
+          />
+          <FontAwesomeIcon
+            icon={faPaperPlane}
+            style={{ color: "black", fontSize: "30px" }}
+          />
         </div>
         <div>
-          <FontAwesomeIcon icon={faBookmark} size="2x" />
+          <FontAwesomeIcon
+            icon={faBookmark}
+            style={{ color: "black", fontSize: "30px" }}
+          />
         </div>
       </div>
       <div className={styles.likeContainer}>

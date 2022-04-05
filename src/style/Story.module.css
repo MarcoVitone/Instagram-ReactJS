@@ -13,6 +13,12 @@
   width: 100vw;
 }
 
+@media screen and (max-width: 500px){
+    .container{
+          justify-content: center;
+    }
+}
+
 .closeStories {
   font-size: 40px;
   position: absolute;

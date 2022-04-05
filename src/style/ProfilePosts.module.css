@@ -17,3 +17,10 @@
     height: 100%;
     object-fit: cover;
 }
+
+@media screen and (min-width: 293px){
+    .container {
+        width: 293px;
+        height: 293px;
+    }
+}

@@ -7,14 +7,24 @@ import {
   faBookmark,
   faFaceSmile,
 } from "@fortawesome/free-regular-svg-icons";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import scalableImage from "../img/scalableimage.png";
 
 const Slide = ({ post }) => {
+  const userID = localStorage.getItem("userID");
+
+  const optBtn = () => {
+    if (userID === post.userID) return <FontAwesomeIcon icon={faEllipsis} style={{marginRight: "10px"}} />;
+  };
+
   return (
     <div className={styles.infoContainerRendered}>
       <div className={styles.titleContainer}>
-        <img src={post.profileURL} alt="" />
-        <h6>{post.userName}</h6>
+        <div style={{display: "flex", alignItems: "center"}}>
+          <img src={post.profileURL} alt="" />
+          <h6>{post.userName}</h6>
+        </div>
+        {optBtn()}
       </div>
       <div>
         <img src={scalableImage} alt="" className={styles.image} />
@@ -22,12 +32,12 @@ const Slide = ({ post }) => {
       <div>
         <div className={styles.optionContainer}>
           <div className={styles.optionContainerLeft}>
-            <FontAwesomeIcon icon={faHeart} size="2x" />
-            <FontAwesomeIcon icon={faComment} size="2x" />
-            <FontAwesomeIcon icon={faPaperPlane} size="2x" />
+            <FontAwesomeIcon icon={faHeart} style={{ color: "black", fontSize: "30px" }} />
+            <FontAwesomeIcon icon={faComment} style={{ color: "black", fontSize: "30px" }} />
+            <FontAwesomeIcon icon={faPaperPlane} style={{ color: "black", fontSize: "30px" }} />
           </div>
           <div>
-            <FontAwesomeIcon icon={faBookmark} size="2x" />
+            <FontAwesomeIcon icon={faBookmark} style={{ color: "black", fontSize: "30px" }} />
           </div>
         </div>
         <div className={styles.likeContainer}>

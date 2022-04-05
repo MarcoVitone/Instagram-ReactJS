@@ -18,6 +18,7 @@ const Story = () => {
   const [current, setCurrent] = useState(parseInt(storyIndex));
   const length = stories.length;
 
+
   const nextSlide = () => {
     setCurrent(current + 1);
   };
@@ -90,7 +91,16 @@ const Story = () => {
         )}
       </MediaQuery>
       <MediaQuery maxWidth={500}>
-        <div></div>
+        <div
+          style={{
+            width: "60px",
+            height: "100vh",
+            position: "absolute",
+            left: "0",
+            top: "80px",
+          }}
+          onClick={prevSlide}
+        ></div>
       </MediaQuery>
       <div className={styles.storyContainer}>{openedStories()}</div>
       <MediaQuery minWidth={751}>
@@ -116,7 +126,16 @@ const Story = () => {
         ) : null}
       </MediaQuery>
       <MediaQuery maxWidth={500}>
-        <div></div>
+        <div
+          style={{
+            width: "60px",
+            height: "100vh",
+            position: "absolute",
+            right: "0",
+            top: "80px",
+          }}
+          onClick={nextSlide}
+        ></div>
       </MediaQuery>
     </div>
   );

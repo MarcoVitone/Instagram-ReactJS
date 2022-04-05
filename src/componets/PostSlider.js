@@ -26,6 +26,7 @@ const PostSlider = ({ profilePostsList, display, currentImageIndex }) => {
     setCurrent( current - 1);
   };
 
+
   const slides = () => {
     return profilePostsList.map((post, index) => {
       return (
@@ -66,22 +67,28 @@ const PostSlider = ({ profilePostsList, display, currentImageIndex }) => {
       >
         <FontAwesomeIcon icon={faXmark} />
       </div>
-      {current !== 0 ? <FontAwesomeIcon
-        icon={faCircleArrowLeft}
-        size="3x"
-        style={{ padding: "10px", margin: "0 20px", color: "#FFFFFF" }}
-        onClick={prevSlide}
-      /> : <div style={{ padding: "10px", margin: "0 50px"}}></div>}
+      {current !== 0 ? (
+        <FontAwesomeIcon
+          icon={faCircleArrowLeft}
+          className={styles.arrow}
+          onClick={prevSlide}
+        />
+      ) : (
+        <div style={{ padding: "10px", margin: "0 50px" }}></div>
+      )}
       <div className={styles.postsContainer}>
         {slides()}
         <div className={styles.infoContainer}>{infoSlides()}</div>
       </div>
-      {current !== length - 1 ? <FontAwesomeIcon
-        icon={faCircleArrowRight}
-        size="3x"
-        style={{ padding: "10px", margin: "0 20px", color: "#FFFFFF" }}
-        onClick={nextSlide}
-      /> : <div style={{ padding: "10px", margin: "0 50px"}}></div>}
+      {current !== length - 1 ? (
+        <FontAwesomeIcon
+          icon={faCircleArrowRight}
+          className={styles.arrow}
+          onClick={nextSlide}
+        />
+      ) : (
+        <div style={{ padding: "10px", margin: "0 50px" }}></div>
+      )}
     </div>
   );
 };

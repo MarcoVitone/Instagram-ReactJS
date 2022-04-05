@@ -6,7 +6,6 @@ import ErrorMessage from "../componets/ErrorMessage";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faGear,
   faBorderAll,
   faBookmark,
   faIdCardClip,
@@ -22,7 +21,7 @@ import { usersProfile } from "../store/actions/handlePost";
 const UsersProfilePage = () => {
   const location = useLocation();
   const uid = location.state.userId;
-  const token = useSelector((state) => state.authReducer.token);
+  const token = useSelector((state) => state.authReducer.token);;
   const userProfilePostsList = useSelector(
     (state) => state.postReducer.userProfilePostsList
   );
@@ -37,6 +36,7 @@ const UsersProfilePage = () => {
 
   const url = userProfilePostsList[0]?.photoURL;
   const userName = userProfilePostsList[0]?.userName;
+  
   const openSliderPosts = (e) => {
     setCurrentImageIndex(e.target.alt);
     dispatch(openPostSlider());
@@ -91,7 +91,6 @@ const UsersProfilePage = () => {
             <div className={styles.infoTextContainerDiv}>
               <h2>{userName}</h2>
               <button>Segui</button>
-              <FontAwesomeIcon icon={faGear} style={{ fontSize: "24px" }} />
             </div>
             <div className={styles.followerContainer}>
               <p className={styles.followerContainerP}>

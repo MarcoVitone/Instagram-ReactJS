@@ -17,10 +17,11 @@ import { Navigate } from "react-router";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
   const [current, setCurrent] = useState(0);
+  const dispatch = useDispatch();
   const token = useSelector((state) => state.authReducer.token);
   const error = useSelector((state) => state.authReducer.error);
+
 
   const images = [bG1, bG2, bG3, bG4];
   setTimeout(() => {
@@ -46,10 +47,12 @@ const Login = () => {
   };
 
   const handleEmail = (e) => {
+    e.preventDefault();
     setEmail(e.target.value);
   };
 
   const handlePassword = (e) => {
+    e.preventDefault();
     setPassword(e.target.value);
   };
 

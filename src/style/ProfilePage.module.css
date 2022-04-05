@@ -1,5 +1,5 @@
 .container {
-  width: 100vw;
+  width: 100%;
   padding-top: 60px;
   display: flex;
   justify-content: space-between;

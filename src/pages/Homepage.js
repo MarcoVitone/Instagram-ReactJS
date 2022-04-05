@@ -2,9 +2,7 @@ import ErrorMessage from "../componets/ErrorMessage";
 import Loader from "../componets/Loader";
 import Story from "../componets/Story";
 import { Navigate } from "react-router";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { fetchUsersData } from "../store/actions/handlePost";
+import { useSelector } from "react-redux";
 import Post from "../componets/Post";
 import { v4 as uuidv4 } from "uuid";
 import styles from "../style/Homepage.module.css";
@@ -12,13 +10,11 @@ import NavBar from "../componets/NavBar";
 import StoriesContainer from "../componets/StoriesContainer";
 import Sidebar from "../componets/Sidebar";
 
-
 const Homepage = () => {
-  const token = localStorage.getItem("token");
+  const token = useSelector((state) => state.authReducer.token);
   const url = localStorage.getItem("photoURL");
   const userName = localStorage.getItem("userName");
   const uid = localStorage.getItem("userID");
-  const dispatch = useDispatch();
   let userList = useSelector((state) => state.postReducer.userList);
   let randomPostsList = useSelector(
     (state) => state.postReducer.randomPostsList
@@ -26,10 +22,6 @@ const Homepage = () => {
   const openedStories = useSelector((state) => state.postReducer.openStories);
   const loading = useSelector((state) => state.postReducer.loading);
   const error = useSelector((state) => state.postReducer.error);
-
-  useEffect(() => {
-    dispatch(fetchUsersData(uid));
-  }, []);
 
   const renderPosts = () => {
     return randomPostsList.map((post) => {
@@ -56,7 +48,7 @@ const Homepage = () => {
     <div className={styles.container}>
       {shouldRedirect}
       {openedStories ? <Story /> : null}
-      <NavBar url={url} uid={uid} />
+      <NavBar />
       <div className={styles.scorllingContainer}>
         <div className={styles.pageContainer}>
           {!loading ? <StoriesContainer /> : <Loader />}
@@ -70,7 +62,12 @@ const Homepage = () => {
         </div>
       </div>
       {!error ? (
-        <Sidebar photoURL={url} userName={userName} userList={userList} />
+        <Sidebar
+          photoURL={url}
+          userName={userName}
+          uid={uid}
+          userList={userList}
+        />
       ) : (
         <ErrorMessage message={"Errore di Network"} />
       )}

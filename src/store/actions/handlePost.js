@@ -1,7 +1,6 @@
 import { storage } from "../../firebase-config";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { users } from "../../Axios";
-import { async } from "@firebase/util";
 
 const UPLOAD_POST_START = "UPLOAD_POST_START";
 const UPLOAD_POST_SUCCESS = "UPLOAD_POST_SUCCESS";
@@ -9,6 +8,7 @@ const FETCH_POSTS_SUCCESS = "FETCH_POSTS_SUCCESS";
 const FETCH_POSTS_DATA_START = "FETCH_POST_DATA_START";
 const FETCH_USER_DATA_SUCCESS = "FETCH_USER_SUCCESS";
 const FETCH_ERROR = "FETCH_ERROR";
+const CURRENT_USER_PROFILE_DATA = "CURRENT_USER_PROFILE_DATA";
 const USER_PROFILE_DATA = "USER_PROFILE_DATA";
 const OPEN_ELEMENT = "OPEN_ELEMENT";
 const CLOSE_ELEMENT = "CLOSE_ELEMENT";
@@ -44,7 +44,7 @@ export const createPost = (file, caption, url) => {
   };
 };
 
-export const fetchUsersData = (uid) => {
+export const fetchUsersData = () => {
   return async (dispatch) => {
     dispatch(fetchPostsDataStart());
     try {
@@ -70,7 +70,9 @@ export const fetchUsersData = (uid) => {
       //create a random array of posts
       let random = [];
       postslList.map((map) => {
-        return random.push(postslList[Math.floor(Math.random() * postslList.length)]);
+        return random.push(
+          postslList[Math.floor(Math.random() * postslList.length)]
+        );
       });
 
       const randomPostsList = random.filter(function (item, pos, self) {
@@ -88,29 +90,34 @@ export const fetchUsersData = (uid) => {
         });
       }
 
-      // create posts list for user profile
-      const myDataProfile = response?.data;
-      const dataProfile = {};
-      dataProfile[uid] = myDataProfile[uid];
-      let profilePostsList
-      if (dataProfile[uid].posts){
-        const dataProfilePosts = dataProfile[uid].posts;
-        profilePostsList = Object.values(dataProfilePosts);
-      } 
-
       dispatch(
-        fetchPostsDataSuccess(postslList, profilePostsList, randomPostsList)
+        fetchPostsDataSuccess(postslList, randomPostsList)
       );
       dispatch(fetchUserDataSuccess(userList));
     } catch (error) {
-      console.log(error)
+      console.log(error);
       dispatch(fetchError(error));
     }
   };
 };
 
+export const currentUserPosts = (uid) => {
+  return async (dispatch) => {
+    try {
+      const response = await users.get(".json");
+      const myDataProfile = response?.data;
+      let profilePostsList = [];
+      const dataProfilePosts = myDataProfile[uid]?.posts;
+      profilePostsList = Object.values(dataProfilePosts);
+      dispatch(currentUserProfileData(profilePostsList));
+    } catch (error) {
+      console.log(error)
+      dispatch(fetchError(error));}
+    };
+};
+
 export const usersProfile = (uid) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       const response = await users.get(".json");
       const userDataProfile = response?.data;
@@ -123,10 +130,11 @@ export const usersProfile = (uid) => {
       }
       dispatch(userProfileData(userProfilePostsList));
     } catch (error) {
-      dispatch(fetchError(error))
+      console.log(error);
+      dispatch(fetchError(error));
     }
-  }
-}
+  };
+};
 
 export const uploadPostStart = () => {
   return {
@@ -142,13 +150,11 @@ export const uploadPostSuccess = () => {
 
 export const fetchPostsDataSuccess = (
   postsList,
-  profilePostsList,
   randomPostsList
 ) => {
   return {
     type: FETCH_POSTS_SUCCESS,
     postsList: postsList,
-    profilePostsList: profilePostsList,
     randomPostsList: randomPostsList,
   };
 };
@@ -170,6 +176,13 @@ export const fetchError = (error) => {
   return {
     type: FETCH_ERROR,
     error: error,
+  };
+};
+
+export const currentUserProfileData = (profilePostsList) => {
+  return {
+    type: CURRENT_USER_PROFILE_DATA,
+    profilePostsList: profilePostsList,
   };
 };
 
@@ -237,4 +250,5 @@ export {
   UPLOAD_POST_SUCCESS,
   FETCH_ERROR,
   USER_PROFILE_DATA,
+  CURRENT_USER_PROFILE_DATA,
 };

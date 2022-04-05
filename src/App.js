@@ -5,16 +5,25 @@ import SignupPhoto from "./pages/SignupPhoto";
 import ProfilePage from "./pages/ProfilePage";
 import UsersProfilePage from "./pages/UsersProfilePage";
 import { authCheck } from "./store/actions/handleAuth";
-import { useEffect } from "react";
+import { fetchUsersData } from "./store/actions/handlePost"; 
+import { useEffect, useRef } from "react";
 import {Route, Routes} from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 
+
 function App() {
   const dispatch = useDispatch();
-  
+  const mounted = useRef(false);
+  const uid = localStorage.getItem("userID");
+
   useEffect( () => {
-     dispatch(authCheck());
+    mounted.current = true;
+    dispatch(authCheck());
+    dispatch(fetchUsersData(uid));
+    return () => {
+      mounted.current = false;
+    };
   }, []) 
 
   return (

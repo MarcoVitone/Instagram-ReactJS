@@ -14,8 +14,8 @@ import {
 import { Navigate } from "react-router";
 import PostSlider from "../componets/PostSlider";
 import { useDispatch } from "react-redux";
-import { openPostSlider } from "../store/actions/handlePost";
-import { useState } from "react";
+import { openPostSlider, currentUserPosts } from "../store/actions/handlePost";
+import { useState, useEffect } from "react";
 
 const ProfilePage = () => {
   const token = useSelector((state) => state.authReducer.token);
@@ -25,14 +25,18 @@ const ProfilePage = () => {
   const profilePostsList = useSelector(
     (state) => state.postReducer.profilePostsList
   );
-    const error = useSelector((state) => state.postReducer.error);
-
+  const error = useSelector((state) => state.postReducer.error);
   const openSlider = useSelector((state) => state.postReducer.openSlider);
   const dispatch = useDispatch();
   const [currentImageIndex, setCurrentImageIndex] = useState("");
+  const length = profilePostsList?.length;
+
+  useEffect(() => {
+    dispatch(currentUserPosts(uid))
+  }, [])
 
   const openSliderPosts = (e) => {
-      setCurrentImageIndex(e.target.alt);
+    setCurrentImageIndex(e.target.alt);
     dispatch(openPostSlider());
   };
 
@@ -43,24 +47,23 @@ const ProfilePage = () => {
   const random = number(Math.floor(Math.random() * 10000000));
 
   const renderPosts = () => {
-    return profilePostsList.map((post, index) => {
-      return (
-        <div
-          key={index}
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-          }}
-          onClick={openSliderPosts}
-        >
-          <ProfilePosts
-            index={index}
-            photoURL={post.photoURL}            
-          />
-        </div>
-      );
-    });
+    if (profilePostsList) {
+      return profilePostsList?.map((post, index) => {
+        return (
+          <div
+            key={index}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+            }}
+            onClick={openSliderPosts}
+          >
+            <ProfilePosts index={index} photoURL={post.photoURL} />
+          </div>
+        );
+      });
+    }
   };
 
   let shouldRedirect = null;
@@ -92,7 +95,7 @@ const ProfilePage = () => {
             </div>
             <div className={styles.followerContainer}>
               <p className={styles.followerContainerP}>
-                Post: {number(profilePostsList.length)}
+                Post: {number(length ? length : "0")}
               </p>
               <p className={styles.followerContainerP}>{random} follower</p>
               <p>{random} profili seguiti</p>
@@ -102,7 +105,7 @@ const ProfilePage = () => {
         <div className={styles.followerContainerw750}>
           <div>
             <p className={styles.followerContainerw750P}>Post:</p>
-            {number(profilePostsList.length)}
+            {number(length ? length : "0")}
           </div>
           <div>
             <p className={styles.followerContainerw750P}>follower</p>
@@ -132,7 +135,17 @@ const ProfilePage = () => {
             </li>
           </ul>
         </div>
-        <div className={styles.postContainer}>{!error ? renderPosts() : <ErrorMessage message={"Errore di Network"} /> }</div>
+        <div className={styles.postContainer}>
+          {length ? (
+            !error ? (
+              renderPosts()
+            ) : (
+              <ErrorMessage message={"Errore di Network"} />
+            )
+          ) : (
+            <ErrorMessage message={"Nessun Post caricato..."} />
+          )}
+        </div>
       </div>
       <Footer />
     </div>

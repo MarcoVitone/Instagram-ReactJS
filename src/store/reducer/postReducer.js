@@ -6,10 +6,10 @@ const initialState = {
   profilePostsList: [],
   randomPostsList:[],
   userProfilePostsList: [],
+  storyIndex: "",
   openElement: false,
   openSlider: false,
   openStories: false,
-  storyIndex: "",
   loading: false,
   error: false,
 };
@@ -51,6 +51,12 @@ const postReducer = (state = initialState, action) => {
         error: true,
         loading: false,
       };
+
+      case actionTypes.CURRENT_USER_PROFILE_DATA:
+        return {
+          ...state,
+          profilePostsList: action.profilePostsList,
+        };
       case actionTypes.USER_PROFILE_DATA:
         return {
           ...state,

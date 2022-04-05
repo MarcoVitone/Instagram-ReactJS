@@ -24,11 +24,13 @@ import { openElements } from "../store/actions/handlePost";
 import { authlogout } from "../store/actions/handleAuth";
 
 
-const NavBar = ({ url, uid }) => {
+const NavBar = () => {
   const [clicked, setClicked] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const openElement = useSelector((state) => state.postReducer.openElement);
   const dispatch = useDispatch();
+  const url = localStorage.getItem("photoURL");
+  const uid = localStorage.getItem("userID");
 
   const changeInput = (e) => {
     e.preventDefault();
