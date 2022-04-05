@@ -111,7 +111,6 @@ export const userDatabase = (user, photoURL) => {
         userName: user.displayName,
         photoURL: photoURL,
       });
-      console.log(response)
     } catch (error) {
       dispatch(authFail(error));
     }

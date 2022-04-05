@@ -95,7 +95,6 @@ export const fetchUsersData = () => {
       );
       dispatch(fetchUserDataSuccess(userList));
     } catch (error) {
-      console.log(error);
       dispatch(fetchError(error));
     }
   };
@@ -107,11 +106,12 @@ export const currentUserPosts = (uid) => {
       const response = await users.get(".json");
       const myDataProfile = response?.data;
       let profilePostsList = [];
-      const dataProfilePosts = myDataProfile[uid]?.posts;
-      profilePostsList = Object.values(dataProfilePosts);
+      if(myDataProfile[uid].posts){
+        const dataProfilePosts = myDataProfile[uid]?.posts;
+        profilePostsList = Object.values(dataProfilePosts);
+      }
       dispatch(currentUserProfileData(profilePostsList));
     } catch (error) {
-      console.log(error)
       dispatch(fetchError(error));}
     };
 };
@@ -130,7 +130,6 @@ export const usersProfile = (uid) => {
       }
       dispatch(userProfileData(userProfilePostsList));
     } catch (error) {
-      console.log(error);
       dispatch(fetchError(error));
     }
   };
