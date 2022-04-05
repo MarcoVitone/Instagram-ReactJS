@@ -13,7 +13,7 @@ import Loader from "../componets/Loader";
 
 const SignupPhoto = () => {
   const [file, setFile] = useState(null);
-
+  const uid = useSelector(state => state.authReducer.userID)
   const dispatch = useDispatch();
   const loading = useSelector(state => state.authReducer.loading);
 
@@ -45,9 +45,9 @@ const SignupPhoto = () => {
             <input type="file" onChange={handleUpload} required="required" />
             <button onSubmit={uploadPhoto}>Upload</button>
             {loading ? <Loader /> : null}
-            <Link to="/login">
+            {uid ? <Link to="/login">
               <button>Vai al Login</button>
-            </Link>
+            </Link> : null}
           </form>
         </div>
         <DownloadIcon />
