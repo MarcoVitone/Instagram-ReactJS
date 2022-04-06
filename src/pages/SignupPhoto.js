@@ -42,8 +42,8 @@ const SignupPhoto = () => {
         <div className={styles.formContainer}>
           <img src={insta} className={styles.instaImg} alt="" />
           <form onSubmit={uploadPhoto} action="">
-            <input type="file" onChange={handleUpload} required="required" />
-            <button onSubmit={uploadPhoto}>Upload</button>
+            {!uid ? <div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}><input type="file" onChange={handleUpload} required="required" />
+            <button onSubmit={uploadPhoto}>Upload</button></div> : null}
             {loading ? <Loader /> : null}
             {uid ? <Link to="/login">
               <button>Vai al Login</button>
